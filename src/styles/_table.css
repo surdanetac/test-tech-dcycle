@@ -1,0 +1,42 @@
+.table-list {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+.table-list__header {
+  background-color: #cccccc;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table-list__body {
+  max-height: 400px;
+  overflow-y: auto;
+  display: block;
+}
+
+.table-list__row {
+  display: flex;
+}
+
+.table-list__cell {
+  flex: 1;
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-list__cell:first-child {
+  flex: 0.5;
+}
+
+.table-list__cell:last-child {
+  flex: 1.5;
+}
+
+.table-list__body .table-list__row:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
