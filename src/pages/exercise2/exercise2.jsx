@@ -1,27 +1,30 @@
 import { useState, useEffect } from 'react';
 import { fetchDataExercise2 } from '../../services/fetchServices';
-import '../../styles/exercise2.css'
 import TableRender from '../../components/tableRender';
+import Spinner from '../../components/loading.jsx';
 
 const Exercise2 = () => {
-  const [data, setData] = useState({ cases: null, hospitality: null, outcomes: null });
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  console.log(data)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchData()
   }, [])
   
   const fetchData = async () => {
+    setLoading(true)
     try {
       const result = await fetchDataExercise2();
-      setData(result);
-      setError(null);
+      setData(result)
+      setError(null)
+      setLoading(false)
     } catch (error) {
-      console.error('Error fetching data:', error);
-      setError('Failed to fetch data');
+      console.error('Error fetching data:', error)
+      setError('Failed to fetch data')
+      setLoading(false)
     }
-  };
+  }
   const schemaCases = [
     { label: 'Fecha', key: 'date'},
     { label: 'Test positivos', key: 'positiveIncrease'},
@@ -44,22 +47,26 @@ const Exercise2 = () => {
 
   return (
     <div>
-      <div className='header'>
-        <h1 className='header__title'>Estadisticas generales relacionadas al COVID en EEUU. </h1> 
-      </div>
-      <div className='main'>
-        <div className='main__container'>
-          <TableRender schema={schemaCases} rows={data.cases} title='Datos casos COVID'></TableRender>
+        <div className='header'>
+          <h1 className='header__title'>Estadisticas generales relacionadas al COVID en EEUU. </h1> 
         </div>
-        <div className='main__container'>
-          <TableRender schema={schemaHospitality} rows={data.hospitality} title='Datos hospitalización COVID'></TableRender>
-        </div>
-        <div className='main__container'>
-          <TableRender schema={schemaDecease} rows={data.outcomes} title='Datos fallecimientos COVID'></TableRender>
-        </div>
-      </div>
+          { loading ? <Spinner color={'white'}/> : data ? error ? <p>{error}</p> : 
+            <div>
+              <div className='main'>
+                  <div className='main__container'>
+                    <TableRender schema={schemaCases} rows={data.cases} title='Datos casos COVID'></TableRender>
+                  </div>
+                  <div className='main__container'>
+                    <TableRender schema={schemaHospitality} rows={data.hospitality} title='Datos hospitalización COVID'></TableRender>
+                  </div>
+                  <div className='main__container'>
+                    <TableRender schema={schemaDecease} rows={data.outcomes} title='Datos fallecimientos COVID'></TableRender>
+                  </div>
+              </div>
+            </div> 
+          : ''}
     </div>
-  );
-};
+  )
+}
 
 export default Exercise2;

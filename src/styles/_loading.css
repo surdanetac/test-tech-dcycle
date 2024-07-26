@@ -1,0 +1,27 @@
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin: 5rem 0;
+}
+.spinner__icon {
+  width: 5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  animation: spinner 1s infinite linear;
+}
+
+.spinner__icon-white {
+  background: 
+    radial-gradient(farthest-side,#ffffff 94%,#0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%,#ffffff);
+}
+.spinner__icon-blue {
+  background: 
+    radial-gradient(farthest-side,#22577A 94%,#0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%,#22577A);
+}
+
+@keyframes spinner{ 
+  100%{transform: rotate(1turn)}
+}

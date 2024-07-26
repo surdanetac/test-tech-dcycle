@@ -1,7 +1,7 @@
 .table-list {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 10px 0;
   font-size: 18px;
   text-align: left;
 }
@@ -27,6 +27,9 @@
   flex: 1;
   padding: 12px 15px;
   border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .table-list__cell:first-child {
@@ -39,4 +42,43 @@
 
 .table-list__body .table-list__row:nth-of-type(even) {
   background-color: #f3f3f3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .table-list__row {
+    display: block;
+  }
+
+  .table-list__cell {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .table-list__cell::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .table-list__header {
+    display: none; 
+  }
+
+  .table-list__body {
+    display: block;
+  }
 }

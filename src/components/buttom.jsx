@@ -1,7 +1,6 @@
-import '../styles/_buttom.css'
-const Button = ({ text, type = "button", onClick }) => {
+const Button = ({ text, type = "button", disabled = false, onClick }) => {
   return (
-    <button className="btn w-full" type={type} onClick={onClick}>
+    <button disabled={disabled} className="btn w-full" type={type} onClick={onClick}>
       {text}
     </button>
   );

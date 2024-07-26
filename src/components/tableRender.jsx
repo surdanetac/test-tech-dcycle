@@ -1,6 +1,3 @@
-import React from 'react';
-import '../styles/_table.css';
-
 const TableRender = ({ rows, schema, title }) => {
 
   return (
@@ -18,7 +15,7 @@ const TableRender = ({ rows, schema, title }) => {
           {rows && rows.map((row, index)  => (
             <div className="table-list__row" key={index}>
               {schema.map((col) => (
-                <div className="table-list__cell" key={col?.key}>
+                <div className="table-list__cell" key={col?.key} data-label={col?.label || ''}>
                   {row[col?.key] || '-' }
                 </div>
               ))}

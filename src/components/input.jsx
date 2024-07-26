@@ -1,4 +1,3 @@
-import "../styles/_input.css"
 
 const Input = ({ value, onChange, labelText, placeholder = "", required = false, containerClass }) => {
   return (
